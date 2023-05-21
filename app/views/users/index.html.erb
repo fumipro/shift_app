@@ -1,0 +1,30 @@
+<div class="main">
+  <div class="member">
+    <h1>店員一覧</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>メールアドレス</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><span><%= link_to user.name, user %></span></td>
+          <td><span><%= user.email %></span></td>
+          <td><%= link_to '編集', edit_user_path(user) %></td>
+          <% if current_user.admin? && !current_user?(user) %>
+          <td><%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to  "新しく登録する", signup_path%>
+  </div>
+</div>

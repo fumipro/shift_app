@@ -1,0 +1,23 @@
+<div class="login-form">
+  <h1>ログイン</h1><br>
+  <div class="form">
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email, class: 'form-control' %>
+    <br>
+    <%= f.label :パスワード %>
+    <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :remember_me, class: "checkbox inline" do %>
+    <%= f.check_box :remember_me %>
+    <span>Remember me</span>
+    <% end %>
+    <p>デモ版</p>
+    <p>●店長ページ email:user0@example.com password:password</p>
+    <p>●店員ページ email:userx@example.com (x=1~19) password:password</p>
+    <div class="text-center">
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

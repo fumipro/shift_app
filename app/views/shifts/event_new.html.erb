@@ -1,0 +1,22 @@
+<div class="main">
+  <h1>予定を書き込む</h1>
+  <div class="event-form">
+    <%= form_with(url: "/event/new" ,model: @event, local: true) do |f| %>
+
+    <div class="form-inline">
+      <%= f.label :日付 %>
+      <%= f.date_field  :start_time, class: "form-control date-field", value:Date.today%>
+
+      <%= f.label :タイトル %>
+      <%= f.text_field :title, class: "form form-control"%>
+
+      <%= f.label :休日にする, class: " checkbox inline" %>
+      <%= f.check_box :holiday, class: " form-control holiday-checkbox"%>
+
+    </div>
+
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+</div>

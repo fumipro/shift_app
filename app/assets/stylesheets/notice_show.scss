@@ -1,0 +1,15 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.notice-show {
+    width: 80%;
+    margin: 15px auto;
+
+}
+
+.notice-content {
+    text-align: justify;
+    line-height: 1.7;
+    overflow-wrap: break-word;
+
+}

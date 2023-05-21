@@ -1,0 +1,51 @@
+<div class="main">
+  <h1>シフト提出</h1><br>
+
+  <%= month_calendar events: @shifts do |date, shifts| %>
+  <span><%= date.day%></span>
+  <div class="parent">
+    <%@events.each do |event|%>
+    <% if event.start_time==date%>
+     <% if event.holiday%>
+        <div class="holiday" >
+          <span><%= event.title %></span>
+        </div>
+      <% else %>
+      <div class="eventday" >
+        <span><%= event.title %></span>
+      </div>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+
+  <div class="text-center">
+    <% if Event.find_by(date:date).present?%>
+    <% if Shift.find_by(user_id: current_user.id, date: date).blank? && !(Event.find_by(date:date).holiday) && date >= Date.today%>
+    <%=link_to "記入", "/shifts/new/#{current_user.id}/#{(date)}"  %>
+    <% end %>
+    <%else%>
+    <% if Shift.find_by(user_id: current_user.id, date: date).blank? && date >= Date.today %>
+    <%=link_to "記入", "/shifts/new/#{current_user.id}/#{(date)}"  %>
+    <% end %>
+    <% end %>
+  </div>
+  <div>
+    <% shifts.each do |shift| %>
+    <% if shift.date+1 < Date.today %>
+    <% shift.destroy %>
+    <% end %>
+    <div class="parent">
+      <div class="workday">
+        <%=link_to "#{shift&.begin_time&.strftime( "%-H:%M" )}～#{shift&.finish_time&.strftime( "%-H:%M" )}", "/shifts/edit/#{current_user.id}/#{(date)}"%>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= link_to "削除","/shifts/destroy/#{date}",method: :delete %>
+    </div>
+
+  </div>
+  <% end %>
+  <% end %>
+</div>

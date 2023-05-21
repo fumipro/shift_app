@@ -1,0 +1,23 @@
+<div class="main">
+  <h2>お知らせを編集する</h2>
+  <div class="notice-form">
+    <%= form_with(url: "/notice/#{params[:id]}/update" ,model: @notice, local: true) do |f| %>
+
+    <div>
+      <%= f.label :件名 %>
+      <%= f.text_field :title %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :本文 %>
+      <%= f.text_area :content ,class:"text-area"%>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

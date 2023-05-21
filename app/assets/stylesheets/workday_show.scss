@@ -1,0 +1,20 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.workday_show_table {
+
+    table {
+        text-align: center;
+        margin: 0 auto;
+
+        th {
+            text-align: center;
+        }
+
+        td {
+            border-top: 2px solid;
+            width: 100px;
+        }
+    }
+}

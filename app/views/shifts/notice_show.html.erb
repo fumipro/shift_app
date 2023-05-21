@@ -1,0 +1,27 @@
+<div class="main">
+  <div class="notice-show">
+    <p>
+      <strong>件名:</strong>
+      <%= @notice.title %>
+    </p>
+    <strong>本文:</strong>
+    <div class="notice-content">
+      <p>
+        <%=safe_join(@notice.content.split("\n"),tag(:br))%>
+      </p>
+    </div>
+    <p>
+      <%=link_to "編集", "/notice/#{@notice.id}/edit"%>
+      <%=link_to "削除", "/notice/#{@notice.id}/destroy" ,method: :delete,data: { confirm: '本当に削除してよろしいですか？' }%>
+    </p>
+
+    <p>
+      <%= @notice.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    </p>
+
+    <p>
+      <%=link_to "お知らせを全て表示する", "/notices"%>
+    </p>
+
+  </div>
+</div>

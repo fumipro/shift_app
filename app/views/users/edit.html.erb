@@ -1,0 +1,30 @@
+<div class="main">
+  <h3>プロフィールを編集する</h3><br>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/user_error_messages' %>
+
+      <%= f.label :名前 %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <br>
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <br>
+      <%= f.label :パスワード %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <br>
+      <% f.label :password_confirmation, "Confirmation" %>
+      <strong><%="確認用パスワード"%></strong>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <div class="text-center">
+        <%= f.submit "更新", class: "btn btn-primary user-btn" %>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+
+</div>

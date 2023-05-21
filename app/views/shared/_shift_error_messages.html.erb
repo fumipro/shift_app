@@ -1,0 +1,12 @@
+ <% if @shift.errors.any? %>
+ <div id="error_explanation">
+   <div class="alert alert-danger">
+     The form contains <%= pluralize(@shift.errors.count, "error") %>.
+   </div>
+   <ul>
+     <% @shift.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+     <% end %>
+   </ul>
+ </div>
+ <% end %>

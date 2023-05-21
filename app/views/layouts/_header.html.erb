@@ -1,0 +1,34 @@
+<header class="navbar navbar-fixed-top " style="background-color:#580707">
+  <div class="container">
+    <%= link_to "cafe sturtle", root_path, id: "logo"%>
+    <nav class="navbar navbar-default navbar-fixed-top " style="margin-top: 50px;">
+      <div class="navbar-header">
+        <% if logged_in? %>
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".target">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse target">
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%;">
+          <li><%= link_to "Home", root_path %></li>
+          <% if !admin_user? %>
+            <li><%=link_to "シフト提出", "/shifts"%></li>
+          <% end %>
+          <% if admin_user? %>
+          <li><%=link_to "シフト一覧","/all_shift"%></li>
+          <li><%=link_to "シフト登録","/register_shift"%></li>
+          <li><%= link_to "店員一覧", '/users' %></li>
+          </li>
+          <% end %>
+          <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+    <% end %>
+  </div>
+</header>

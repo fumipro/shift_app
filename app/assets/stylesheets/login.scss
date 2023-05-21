@@ -1,0 +1,28 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@mixin box_sizing {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.login-form {
+    border-width: thin;
+    border-style: solid;
+    background-color: #fff;
+    width: 100%;
+    margin-top: 100px;
+    margin: 0 auto;
+    padding: 20px 0 100px 0;
+    @include box_sizing;
+
+    .form {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}

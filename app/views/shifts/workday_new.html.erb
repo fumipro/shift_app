@@ -1,0 +1,32 @@
+<div class="main workday-new">
+  <h3><%=@user.name%>
+    <%=params[:date].to_time.strftime('%Y年%-m月%-d日')%></h3>
+  <p><%="希望就業時間:#{@shift.begin_time.strftime( "%-H:%M" )}～#{@shift.finish_time.strftime( "%-H:%M" )}"%></p>
+
+  <div class="row">
+    <div class="shift-form">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_with(url:"/register_shift/new/:user_id/:date",model:@workday, local: true, class:"form-inline") do |f| %>
+        <%= render 'shared/shift_error_messages' %>
+
+
+        <%= f.label :始業時刻 %>
+        <%= f.time_field(:begin_time, class: 'form form-control', value: @shift.begin_time.strftime( "%H:%M" )) %>
+
+        <%= f.label :終業時刻%>
+        <%= f.time_field(:finish_time, class: 'form form-control', value:@shift.finish_time.strftime( "%H:%M" )) %>
+
+
+        <%=f.hidden_field(:user_id, value: params[:user_id])%>
+
+        <%=f.hidden_field(:date, value: params[:date])%>
+
+        <%=f.hidden_field(:start_time ,value: params[:date])%>
+        
+
+        <%= f.submit "シフト登録", class: "btn btn-primary workday_btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

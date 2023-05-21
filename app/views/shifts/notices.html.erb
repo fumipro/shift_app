@@ -1,0 +1,33 @@
+<div class="main">
+  <div class="table">
+    <h3>全ての店長からのお知らせ</h3>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @notices.each do |notice| %>
+        <tr>
+          <td><span><%= notice.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></span>
+          <td><%=link_to "#{notice.title}", "/notice/#{notice.id}/show"%></td>
+          <td><%=link_to "編集", "/notice/#{notice.id}/edit"%></td>
+          <td><%=link_to "削除", "/notice/#{notice.id}/destroy" ,method: :delete,data: { confirm: '本当に削除してよろしいですか？' }%>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <% if @notice.blank? %>
+    <p><span>お知らせはありません</span></p>
+    <% end %>
+    <% if admin_user? %>
+    <%=link_to "お知らせを投稿する", "/notice/new"%>
+    <% end %>
+  </div>
+</div>

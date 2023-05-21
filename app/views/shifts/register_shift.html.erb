@@ -1,0 +1,50 @@
+<div class="main">
+    <h1>シフト登録</h1><br>
+    <%= link_to "前の月へ",register_shift_path(month:@month.prev_month) %>
+    <%="#{@month.year}年"%>
+    <%="#{@month.month}月"%>
+    <%= link_to "次の月へ",register_shift_path(month:@month.next_month) %>
+
+
+    <div>
+        <table class="time-table" border="1">
+            <tr>
+                <th class="fixed">
+                    <p>日付</p>
+                </th>
+                <% for date in @month.all_month do%>
+                <th>
+                    <p><%=date.day%></p>
+                </th>
+                <%end%>
+            </tr>
+
+            <%@users.each do |user|%>
+            <tr>
+                <td class="user-name fixed"><%=user.name%></td>
+                <%f_date=@month.beginning_of_month%>
+                <% 1.upto(@month.end_of_month.day) do |num|%>
+                <%shift=Shift.find_by(user_id: user.id, date:f_date )%>
+                <% if shift.blank?%>
+                <td class="holiday"><%="休"%></td>
+                <%else%>
+                <% if shift.date+1 < Date.today %>
+                <% shift.destroy %>
+                <% end %>
+                <% workday=Workday.find_by(user_id:shift.user_id, date: shift.date) %>
+                <% if workday.blank? %>
+                <td><%=link_to "#{shift&.begin_time&.strftime( "%-H:%M" )}～#{shift&.finish_time&.strftime( "%-H:%M" )}", "/register_shift/new/#{shift.user_id}/#{shift.date}"%>
+                </td>
+                <% else %>
+                <td class="workday">
+                    <%=link_to "#{workday&.begin_time&.strftime( "%-H:%M" )}～#{workday&.finish_time&.strftime( "%-H:%M" )}", register_shift_path(user_id: shift.user_id, date: shift.date), method: :delete %>
+                </td>
+                <% end %>
+                <% end %>
+                <%f_date=f_date+1%>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

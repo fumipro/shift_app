@@ -1,0 +1,230 @@
+/*   全ページ共通 */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.body {
+  padding-top: 13rem;
+  background-color: rgb(224, 247, 250);
+  min-height: 100vh;
+
+}
+
+.main {
+  border-width: thin;
+  border-style: solid;
+  background-color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+  @include box_sizing;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.parent {
+  text-align: center;
+
+  .workday {
+    background-color: aqua;
+    padding: 0 5px;
+    display: inline-block;
+  }
+
+  .holiday {
+    background-color: rgba(240, 52, 32, 0.8);
+    padding: 0 5px;
+    display: inline-block
+  }
+
+  .eventday {
+    background-color: rgba(50, 240, 37, 0.8);
+    padding: 0 5px;
+    display: inline-block
+  }
+
+}
+
+.link-text {
+  color: #fff;
+}
+
+
+/* ヘッダー */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  padding-top: 9px;
+  font-size: 1.7em;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.menu {
+  padding-left: 100px;
+}
+
+/* フォーム----------------------------- */
+
+
+
+.notice-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.event-form {
+  text-align: center;
+  margin: 50px auto;
+
+  .form {
+    margin-right: 20px;
+  }
+
+
+
+  .date-field {
+    margin-right: 20px;
+  }
+
+  .btn {
+    width: 25%;
+  }
+}
+
+
+.shift-form {
+  text-align: center;
+  margin-top: 20px;
+
+  .form {
+    margin-right: 30px;
+  }
+}
+
+.text-area {
+  height: 100px;
+}
+
+/*  表 */
+.table {
+  td {
+    padding-right: 10px;
+  }
+}
+
+/* ボタン */
+.btn {
+  width: 50%;
+  margin-top: 50px;
+}
+
+.user-btn {
+  text-align: center;
+
+}
+
+
+/* モバイル----------------------------------------------- */
+@media (max-width: 768px) {
+  .shift-form {
+    .main {
+      border-width: thin;
+      border-style: solid;
+      background-color: #fff;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2px 2px 20px;
+      @include box_sizing;
+    }
+
+
+
+    /* フォーム----------------------------- */
+
+    text-align: center;
+    margin-top: 20px;
+
+    .form {
+
+      width: 100px;
+      margin: 0 auto 20px auto;
+    }
+  }
+
+  .event-form {
+    text-align: center;
+    margin: 50px auto;
+
+    .date-field {
+      width: 13rem;
+      margin-right: 20px;
+      margin: 0 auto 20px auto;
+    }
+
+    .form {
+      width: 25rem;
+      margin-right: 20px;
+      margin: 0 auto 20px auto;
+    }
+
+    .holiday-checkbox {
+      width: 2rem;
+      margin-right: 20px;
+      margin: 0 auto 20px auto;
+    }
+  }
+
+  //* ボタン-------------------------- */
+  .btn {
+    width: 80%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  a {
+    font-size: 8px;
+  }
+
+  p {
+    font-size: 8px;
+  }
+
+  span {
+    font-size: 8px;
+  }
+
+  body {
+    font-size: 8px;
+  }
+
+}

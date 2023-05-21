@@ -1,0 +1,43 @@
+<div class="main">
+    <h1>シフト一覧</h1><br>
+    <%= link_to "前の月へ",all_shift_path(month:@month.prev_month) %>
+    <%="#{@month.year}年"%>
+    <%="#{@month.month}月"%>
+    <%= link_to "次の月へ",all_shift_path(month:@month.next_month) %>
+
+
+    <div>
+        <table class="time-table" border="1">
+            <tr>
+                <th class="fixed">
+                    <p>日付</p>
+                </th>
+                <% for date in @month.all_month do%>
+                <th>
+                    <p><%=date.day%></p>
+                </th>
+                <%end%>
+            </tr>
+
+            <%@users.each do |user|%>
+            <tr>
+                <td class="user-name fixed"><%=user.name%></td>
+                <%f_date=@month.beginning_of_month%>
+                <% 1.upto(@month.end_of_month.day) do |num|%>
+                <%workday=Workday.find_by(user_id: user.id, date:f_date )%>
+                <% if workday.blank?%>
+                <td class="holiday"><%="休"%></td>
+                <%else%>
+                <% if workday.date+1 < Date.today %>
+                <% workday.destroy %>
+                <% end %>
+                <td><%="#{workday&.begin_time&.strftime( "%-H:%M" )}～#{workday&.finish_time&.strftime( "%-H:%M" )}"%>
+                </td>
+                <% end %>
+                <%f_date=f_date+1%>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
