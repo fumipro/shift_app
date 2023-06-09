@@ -37,7 +37,7 @@
                 </td>
                 <% else %>
                 <td class="workday">
-                    <%=link_to "#{workday&.begin_time&.strftime( "%-H:%M" )}～#{workday&.finish_time&.strftime( "%-H:%M" )}", register_shift_path(user_id: shift.user_id, date: shift.date), method: :delete %>
+                    <%=link_to "#{workday&.begin_time&.strftime( "%-H:%M" )}～#{workday&.finish_time&.strftime( "%-H:%M" )}", "/register_shift/delete/#{shift.user_id}/#{shift.date}"%>
                 </td>
                 <% end %>
                 <% end %>

@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   get  "/notice/:id/destroy", to: "shifts#notice_destroy"
   get  "/event/destroy/:id", to:"shifts#event_destroy"
   get  '/shifts/destroy/:format', to: 'shifts#destroy'
-
+  get  "/register_shift/delete/:user_id/:date", to: "shifts#workday_destroy"
+ 
+  
   post   '/login',   to: 'sessions#create'
   post  "/shifts/new/:user_id/:date",   to: 'shifts#create'
   post "/register_shift/new/:user_id/:date", to: "shifts#workday_create"
@@ -41,5 +43,5 @@ Rails.application.routes.draw do
   delete "/event/destroy/:id", to:"shifts#event_destroy"
   delete '/shifts/destroy/:format', to: 'shifts#destroy'
   delete '/logout',  to: 'sessions#destroy'
-  delete "/register_shift", to: "shifts#workday_destroy"
+  delete "/register_shift/delete/:user_id/:date", to: "shifts#workday_destroy"
 end
